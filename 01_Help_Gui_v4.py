@@ -23,18 +23,26 @@ class Converter:
     
     def help(self):
         print("You asked for help")
+        
         get_help = Help(self)
         get_help.help_text.configure(text="Help text goes here")
 
 class Help:
     def __init__(self, partner):
+<<<<<<< HEAD
+=======
+        
+>>>>>>> d07760baac7ed4a8576a8003e5ce39b077b99328
         background = "orange"
 
         # disable help button
         partner.help_button.config(state=DISABLED)
 
         # sets up child window (ie: help box)
-        self.help_box= Toplevel()
+        self.help_box = Toplevel()
+
+        # If users press cross at top, closes help and 'releases' help button
+        self.help_box.protocol('WM_DELETE_WINDOW', partial(self.close_help, partner))
 
         # set up GUI frame
         self.help_frame = Frame(self.help_box,  bg=background)
@@ -56,6 +64,7 @@ class Help:
         # put help button back to normal...
         partner.help_button.config(state=NORMAL)
         self.help_box.destroy()
+
 
 # main routine
 if __name__ == "__main__":
