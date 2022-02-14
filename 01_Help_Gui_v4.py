@@ -41,7 +41,7 @@ class Help:
         self.help_frame.grid()
 
         # set up help heading (row 0)
-        self.how_heading = Label(self.help_frame, text="Help / Instructions", font="arial 14 bold", bg=background)
+        self.how_heading = Label(self.help_frame, text="Help / Instructions", font=("Arial", "14", "bold"), bg=background)
         self.how_heading.grid(row=0)
 
         # help text (label, row 1)
@@ -49,7 +49,7 @@ class Help:
         self.help_text.grid(row=1)
 
         # dismiss button (row 2)
-        self.dismiss_btn = Button(self.help_frame, text="Dismiss", width=10, bg="orange", font="arial 10 bold", command=partial(self.close_help, partner))
+        self.dismiss_btn = Button(self.help_frame, text="Dismiss", width=10, bg="orange", font=("Arial", "10", "bold"), command=partial(self.close_help, partner))
         self.dismiss_btn.grid(row=2, pady=10)
 
     def close_help(self, partner):
