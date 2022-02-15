@@ -28,11 +28,8 @@ class Converter:
         get_help.help_text.configure(text="Help text goes here")
 
 class Help:
+    
     def __init__(self, partner):
-<<<<<<< HEAD
-=======
-        
->>>>>>> d07760baac7ed4a8576a8003e5ce39b077b99328
         background = "orange"
 
         # disable help button
