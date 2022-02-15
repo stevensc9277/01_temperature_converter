@@ -29,10 +29,10 @@ class Converter:
         self.conversion_buttons_frame = Frame(self.converter_frame)
         self.conversion_buttons_frame.grid(row=3, pady=10)
 
-        self.to_c_button = Button(self.conversion_buttons_frame, text="To Centigrade", font="Arial 10 bold", bg="Khaki1", padx=10, pady=10)
+        self.to_c_button = Button(self.conversion_buttons_frame, text="To Centigrade", font="Arial 10 bold", bg="Khaki1", padx=10, pady=10, command=lambda: self.temp_convert(-459))
         self.to_c_button.grid(row=0, column=0)
 
-        self.to_f_button = Button(self.conversion_buttons_frame, text="To Fahrenheit", font="Arial 10 bold", bg="Orchid1", padx=10, pady=10)
+        self.to_f_button = Button(self.conversion_buttons_frame, text="To Fahrenheit", font="Arial 10 bold", bg="Orchid1", padx=10, pady=10, command=lambda: self.temp_convert(-273))
         self.to_f_button.grid(row=0, column=1)
 
         # answer label (row 4)
@@ -47,7 +47,32 @@ class Converter:
         self.calc_hist_button.grid(row=0, column=0)
 
         self.help_button = Button(self.hist_help_frame, font="Arial 12 bold", text="Help", width=5)
-        self.help_button.grid(row=0, column=1)                                                                            
+        self.help_button.grid(row=0, column=1)  
+
+    def temp_convert(self, to):
+        print(to) 
+
+        # retrieve amount entered into entry field
+        to_convert = self.to_convert_entry.get()
+
+        try:
+            to_convert = float(to_convert)
+            print("yay")
+
+        except ValueError:
+            print("oops")
+
+        # check amount is a valid number
+            
+        # convert to F
+
+        # convert to C
+
+        # round!!
+
+        # display answer
+
+        # add answer to list for history                                                                          
 
 # main routine
 if __name__ == "__main__":
