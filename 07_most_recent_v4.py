@@ -34,3 +34,4 @@ else:
     # print items starting at the end of the list
     for i in range(0, 3):
         print(all_calculations[len(all_calculations) - i - 1])
+        
