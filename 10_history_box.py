@@ -10,7 +10,7 @@ class Converter:
         background_color = "light blue"
 
         # initialise list to hold calculation history
-        self.all_calculations = ['0 degrees C is -17.8 degrees F', '0 degrees C is 32 degrees F', '40 degrees C is 104 degrees F', '40 degrees C is 4.4 degrees F', '12 degrees C is 53.6 degrees F', '24 degrees C is 75.2 degrees F', '100 degrees C is 37.8 degrees F']
+        self.all_calc_list = ['0 degrees C is -17.8 degrees F', '0 degrees C is 32 degrees F', '40 degrees C is 104 degrees F', '40 degrees C is 4.4 degrees F', '12 degrees C is 53.6 degrees F', '24 degrees C is 75.2 degrees F', '100 degrees C is 37.8 degrees F']
 
         # Converter Main screen gui...
         self.converter_frame = Frame(width=300, height=300, bg=background_color, pady=10)
@@ -21,16 +21,16 @@ class Converter:
         self.temp_converter_label.grid(row=0)
 
         # history button (row 1)
-        self.history_button = Button(self.converter_frame, font=("Arial", "14"), text="History", padx=10, pady=10, command=self.history)
+        self.history_button = Button(self.converter_frame, font=("Arial", "14"), text="History", padx=10, pady=10, command=lambda: self.history(self.all_calc_list))
         self.history_button.grid(row=1)
     
     def history(self):
         print("You asked for history")
         
-        get_history = history(self)
+        get_history = History(self)
         get_history.history_text.configure(text="history text goes here")
 
-class history:
+class History:
     
     def __init__(self, partner):
         background = "#a9ef99"      # pale green
