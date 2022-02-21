@@ -10,7 +10,7 @@ class Converter:
         background_color = "light blue"
 
         # initialise list to hold calculation history
-        self.all_calc_list = ['0 degrees C is -17.8 degrees F', '0 degrees C is 32 degrees F', '40 degrees C is 104 degrees F', '40 degrees C is 4.4 degrees F', '12 degrees C is 53.6 degrees F', '24 degrees C is 75.2 degrees F', '100 degrees C is 37.8 degrees F']
+        self.all_calc_list = ['0 degrees C is -17.8 degrees F', '0 degrees C is 32 degrees F', '24 degrees C is 75.2 degrees F', '100 degrees C is 37.8 degrees F']
 
         # Converter Main screen gui...
         self.converter_frame = Frame(width=300, height=300, bg=background_color, pady=10)
@@ -23,16 +23,16 @@ class Converter:
         # history button (row 1)
         self.history_button = Button(self.converter_frame, font=("Arial", "14"), text="History", padx=10, pady=10, command=lambda: self.history(self.all_calc_list))
         self.history_button.grid(row=1)
+
+        if len(self.all_calc_list) == 0:
+            self.history_button.config(state=DISABLED)
     
-    def history(self):
-        print("You asked for history")
-        
-        get_history = History(self)
-        get_history.history_text.configure(text="history text goes here")
+    def history(self, calc_history):
+        History(self, calc_history)
 
 class History:
     
-    def __init__(self, partner):
+    def __init__(self, partner, calc_history):
         background = "#a9ef99"      # pale green
 
         # disable history button
@@ -57,6 +57,23 @@ class History:
         self.history_text.grid(row=1)
 
         # History output goes here.. (row 2)
+
+
+        # generate string from list of calculations...
+        history_string = ""
+
+        if len(calc_history) >= 7:
+            for i in range(0, 7):
+                history_string += calc_history[len(calc_history) - i - 1] + "\n"
+
+        else:
+            for i in calc_history:
+                history_string += calc_history[len(calc_history) - calc_history.index(i) - 1] + "\n"
+                self.history_text.config(text="Here is your calculation history. You can use the export button to save this data to a text file if desired.")
+
+        # label to display calculation history to user
+        self.calc_label = Label(self.history_frame, text=history_string, bg=background, font="Arial 12", justify=LEFT)
+        self.calc_label.grid(row=2)
 
         # export / dismiss buttons frame (row 3)
         self.export_dismiss_frame = Frame(self.history_frame)
