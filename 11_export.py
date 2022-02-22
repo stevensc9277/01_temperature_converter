@@ -18,7 +18,7 @@ class Converter:
         self.temp_converter_label.grid(row=0)
 
         # export button (row 1)
-        self.export_button = Button(self.converter_frame, font=("Arial", "14"), text="Export", padx=10, pady=10, command=lambda: self.export)
+        self.export_button = Button(self.converter_frame, font=("Arial", "14"), text="Export", padx=10, pady=10, command=lambda: self.export())
         self.export_button.grid(row=1)
 
     
@@ -58,10 +58,6 @@ class Export:
         # filename entry box (row 3)
         self.filename_entry = Entry(self.export_frame, width=20, font="Arial 14 bold", justify=CENTER)
         self.filename_entry.grid(row=3, pady=10)
-        
-        # export / dismiss buttons frame (row 3)
-        self.export_dismiss_frame = Frame(self.export_frame)
-        self.export_dismiss_frame.grid(row=3, pady=10)
 
         # save / cancel frame
         self.save_cancel_frame = Frame(self.export_frame)
