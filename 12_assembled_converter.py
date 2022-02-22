@@ -186,7 +186,7 @@ class History:
 
 class Export:
     
-    def __init__(self, partner):
+    def __init__(self, partner, calc_history):
         background = "#a9ef99"      # pale green
 
         # disable export button
