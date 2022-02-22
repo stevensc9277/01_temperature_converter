@@ -10,7 +10,7 @@ class Converter:
         background_colour = "light blue"
 
         # initialise list to hold calculation history
-        self.all_calculations = ['0 degrees C is -17.8 degrees F', '0 degrees C is 32 degrees F', '40 degrees C is 104 degrees F', '40 degrees C is 4.4 degrees F', '12 degrees C is 53.6 degrees F', '24 degrees C is 75.2 degrees F', '100 degrees C is 37.8 degrees F']
+        self.all_calc_list = ['0 degrees C is -17.8 degrees F', '0 degrees C is 32 degrees F', '40 degrees C is 104 degrees F', '40 degrees C is 4.4 degrees F', '12 degrees C is 53.6 degrees F', '24 degrees C is 75.2 degrees F', '100 degrees C is 37.8 degrees F']
 
         # converter frame
         self.converter_frame = Frame(bg=background_colour, pady=10)
@@ -46,8 +46,11 @@ class Converter:
         self.hist_help_frame = Frame(self.converter_frame)
         self.hist_help_frame.grid(row=5, pady=10)
 
-        self.calc_hist_button = Button(self.hist_help_frame, font="Arial, 12 bold", text="Calculation history", width=15)
-        self.calc_hist_button.grid(row=0, column=0)
+        self.history_button = Button(self.hist_help_frame, font="Arial, 12 bold", text="Calculation history", width=15, command=lambda: self.history(self.all_calc_list))
+        self.history_button.grid(row=0, column=0)
+
+        if len(self.all_calc_list) == 0:
+            self.history_button.config(state=DISABLED)
 
         self.help_button = Button(self.hist_help_frame, font="Arial 12 bold", text="Help", width=5)
         self.help_button.grid(row=0, column=1)  
@@ -94,8 +97,8 @@ class Converter:
 
             # add answer to list for history 
             if answer != "Too cold":
-                self.all_calculations.append(answer)
-                print(self.all_calculations)
+                self.all_calc_list.append(answer)
+                print(self.all_calc_list)
 
 
         except ValueError:
