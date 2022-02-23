@@ -84,7 +84,7 @@ class History:
         self.export_button.grid(row=0, column=0)
 
         # dismiss button
-        self.dismiss_button = Button(self.export_dismiss_frame, text="Dismiss", font="arial 12 bold", command=partial(self.close_history))
+        self.dismiss_button = Button(self.export_dismiss_frame, text="Dismiss", font="arial 12 bold", command=partial(self.close_history, partner))
         self.dismiss_button.grid(row=0, column=1)
 
 
