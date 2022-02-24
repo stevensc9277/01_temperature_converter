@@ -2,7 +2,6 @@ from tkinter import *
 from functools import partial       #To prevent unwanted windows
 import re
 
-
 class Converter:
     def __init__(self, parent):
         
@@ -178,7 +177,7 @@ class History:
         self.export_button.grid(row=0, column=0)
 
         # dismiss button
-        self.dismiss_button = Button(self.export_dismiss_frame, text="Dismiss", font="arial 12 bold", command=partial(self.close_history))
+        self.dismiss_button = Button(self.export_dismiss_frame, text="Dismiss", font="arial 12 bold", command=partial(self.close_history, partner))
         self.dismiss_button.grid(row=0, column=1)
 
 
@@ -239,6 +238,11 @@ class Export:
         # cancel button
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel", font="arial 12 bold", command=partial(self.close_export, partner))
         self.cancel_button.grid(row=0, column=1)
+
+        if 'normal' == self.history_box.state():
+            print("Running")
+        else:
+            self.export_box.destroy()
     
     def save_history(self, parent,calc_history):
         
@@ -261,7 +265,7 @@ class Export:
                 has_error = "yes"
                 break
 
-        if filename == " ":
+        if filename == "":
             problem = "can't be blank"
             has_error = "yes"
 
@@ -276,6 +280,10 @@ class Export:
         else:
             # If there are no errrors, generate text file and then close dialogue box
             
+            # change entry box color back to normal if no errors after previous error
+            self.save_error_label.configure(text="", fg="blue")
+            self.filename_entry.configure(bg="white")
+
             # add .txt suffix!
             filename = filename + ".txt"
 
@@ -288,9 +296,11 @@ class Export:
 
             # close file
             f.close()
+            self.export_box.destroy()
 
     def close_export(self, partner):
         # put export button back to normal...
+
         partner.export_button.config(state=NORMAL)
         self.export_box.destroy()
 
