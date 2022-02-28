@@ -188,6 +188,8 @@ class History:
         # put history button back to normal...
         partner.history_button.config(state=NORMAL)
         self.history_box.destroy()
+        
+        
 
 class Export:
     
@@ -239,10 +241,6 @@ class Export:
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel", font="arial 12 bold", command=partial(self.close_export, partner))
         self.cancel_button.grid(row=0, column=1)
 
-        if 'normal' == self.history_box.state():
-            print("Running")
-        else:
-            self.export_box.destroy()
     
     def save_history(self, parent,calc_history):
         
