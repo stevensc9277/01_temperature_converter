@@ -1,6 +1,7 @@
 from tkinter import *
 from functools import partial       #To prevent unwanted windows
 import re
+import datetime as dt
 
 class Converter:
     def __init__(self, parent):
@@ -204,7 +205,7 @@ class Export:
 
         # sets up child window (ie: export box)
         self.export_box = Toplevel()
-        
+
         # If users press cross at top, closes export and 'releases' export button
         self.export_box.protocol('WM_DELETE_WINDOW', partial(self.close_export, partner))
         
@@ -261,6 +262,7 @@ class Export:
 
             elif letter == " ":
                 problem = "(no spaces allowed)"
+                has_error = "yes"
 
             else:
                 problem = ("(no {}'s allowed)".format(letter))
@@ -292,13 +294,21 @@ class Export:
             # create file to hold data
             f = open(filename, "w+")
 
+            # find and return current date for testing purposes
+            now = dt.datetime.now()
+
             # add new line at end of each item
+            f.write("Temperature Conversions \n\n")
+            f.write("Made on: " + now.strftime('%A, %B %d, %Y') + "\n\n")
+
             for item in calc_history:
                 f.write(item + "\n")
 
             # close file
             f.close()
+            self.close_export(parent)
             self.export_box.destroy()
+            
 
     def close_export(self, partner):
         # put export button back to normal...
