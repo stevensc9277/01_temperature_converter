@@ -136,7 +136,7 @@ class History:
 
         # If users press cross at top, closes history and 'releases' history button
         self.history_box.protocol('WM_DELETE_WINDOW', partial(self.close_history, partner))
-
+    
         # set up GUI frame
         self.history_frame = Frame(self.history_box,  bg=background)
         self.history_frame.grid()
@@ -183,6 +183,8 @@ class History:
 
     def export(self, calc_history):
         get_export = Export(self, calc_history)
+        self.history_box.withdraw()
+        
 
     def close_history(self, partner):
         # put history button back to normal...
@@ -196,14 +198,16 @@ class Export:
     def __init__(self, partner, calc_history):
         background = "#a9ef99"      # pale green
 
+    
         # disable export button
         partner.export_button.config(state=DISABLED)
 
         # sets up child window (ie: export box)
         self.export_box = Toplevel()
-
+        
         # If users press cross at top, closes export and 'releases' export button
         self.export_box.protocol('WM_DELETE_WINDOW', partial(self.close_export, partner))
+        
 
         # set up GUI frame
         self.export_frame = Frame(self.export_box,  bg=background, width=300)
@@ -298,9 +302,11 @@ class Export:
 
     def close_export(self, partner):
         # put export button back to normal...
+        partner.history_box.deiconify()
 
         partner.export_button.config(state=NORMAL)
         self.export_box.destroy()
+   
 
 class Help:
     
@@ -344,3 +350,5 @@ if __name__ == "__main__":
     root.title("Temperature Converter")
     something = Converter(root)
     root.mainloop()
+
+   
