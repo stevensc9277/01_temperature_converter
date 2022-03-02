@@ -1,8 +1,0 @@
-Temperature Conversions 
-
-Made on: Wednesday, March 02, 2022
-
-12 degrees F is -11.1 degrees C
-12 degrees C is 53.6 degrees F
-123 degrees F is 50.6 degrees C
-123 degrees C is 253.4 degrees F
