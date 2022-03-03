@@ -3,6 +3,13 @@ from functools import partial       #To prevent unwanted windows
 import re
 import datetime as dt
 
+#Define functions to change button color on hover
+def on_enter(e):
+    e.widget.config(background='snow4', foreground= "white")
+
+def on_leave(e):
+    e.widget.config(background= 'SystemButtonFace', foreground= 'black')
+
 class Converter:
     def __init__(self, parent):
         
@@ -65,15 +72,12 @@ class Converter:
 
        
     def temp_convert(self, low):
-        #Define functions
-        def on_enter(e):
-            e.widget.config(background='pink', foreground= "white")
-
-        def on_leave(e):
-            e.widget.config(background= 'SystemButtonFace', foreground= 'black')
 
         self.history_button.bind('<Enter>', on_enter)
         self.history_button.bind('<Leave>', on_leave)
+        self.help_button.bin
+        d('<Enter>', on_enter)
+        self.help_button.bind('<Leave>', on_leave)
 
         error = "#ffafaf" # pale pink background for when entry box has errors
 
@@ -141,6 +145,8 @@ class History:
 
         # disable history button
         partner.history_button.config(state=DISABLED)
+        partner.history_button.unbind('<Enter>')
+        partner.history_button.unbind('Leave>')
 
         # sets up child window (ie: history box)
         self.history_box = Toplevel()
@@ -199,6 +205,9 @@ class History:
 
     def close_history(self, partner):
         # put history button back to normal...
+        
+        partner.history_button.bind('<Enter>', on_enter)
+        partner.history_button.bind('<Leave>', on_leave)
         partner.history_button.config(state=NORMAL)
         self.history_box.destroy()
         
