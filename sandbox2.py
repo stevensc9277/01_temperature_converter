@@ -22,7 +22,7 @@ def on_leave(e, color, name):
 to_click= Button(win, text= "Click Me", font= ('Helvetica 13 bold'), bg="green")
 to_click.pack(pady= 20)
 
-to_click2= Button(win, text= "Click Me", font= ('Helvetica 13 bold'), bg="blue")
+to_click2= Button(win, text= "Click Me", font= ('Helvetica 13 bold'), bg="orange")
 to_click2.pack(pady= 20)
 
 setup_hover(to_click)
