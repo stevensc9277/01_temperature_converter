@@ -76,7 +76,7 @@ class Converter:
         self.history_button.bind('<Enter>', on_enter)
         self.history_button.bind('<Leave>', on_leave)
         self.help_button.bin
-        d('<Enter>', on_enter)
+        ('<Enter>', on_enter)
         self.help_button.bind('<Leave>', on_leave)
 
         error = "#ffafaf" # pale pink background for when entry box has errors
