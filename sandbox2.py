@@ -4,12 +4,14 @@ from tkinter import *
 win= Tk()
 #Define the geometry of the window
 win.geometry("750x250")
+win.state("zoomed")
 
 def setup_hover(button_name):
    color = button_name.cget("bg")
    button_name.bind('<Enter>', lambda e: on_enter(e, button_name, color)) 
 
    button_name.bind('<Leave>', lambda e: on_leave(e, color, button_name))
+
 #Define functions
 def on_enter(e, name, color):
    name.config(background='dark '+color, foreground= "white")
